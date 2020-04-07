@@ -1,0 +1,6 @@
+# CDK temp files
+backend/cdk.out/
+custodian/output/**
+
+# Schema file for yaml-language-server
+schema.json

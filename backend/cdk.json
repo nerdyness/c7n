@@ -1,0 +1,4 @@
+{
+  "app": "python3 cdk-app.py",
+  "requireApproval": "never"
+}

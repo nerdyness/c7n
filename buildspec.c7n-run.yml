@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - custodian validate ./custodian/policies/*
+      - custodian run --output-dir ./custodian/output ./custodian/policies/*
+  post_build:
+    commands:
+      - echo Build completed on $(date)
+artifacts:
+  base-directory: $CODEBUILD_SRC_DIR
+  files:
+    - custodian/output/**/*
