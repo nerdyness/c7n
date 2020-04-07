@@ -1,0 +1,5 @@
+# Flake8 configuration file for this project.
+
+[flake8]
+# Let's get rid of the 80 character line length
+max-line-length = 120

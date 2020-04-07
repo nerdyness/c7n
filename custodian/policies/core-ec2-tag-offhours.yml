@@ -1,0 +1,16 @@
+policies:
+  - name: core-ec2-tag-offhours
+    resource: ec2
+    comments: |
+      Tag any EC2 instance with the c7n-offhour tag
+    mode:
+      type: cloudtrail
+      role: arn:aws:iam::759416856076:role/c7n
+      events:
+        - RunInstances
+    filters:
+      - "tag:c7n-offhour": absent
+    actions:
+      - type: tag
+        tag: c7n-offhour
+        value: off=(M-F,19);tz=cet

@@ -1,0 +1,30 @@
+accounts:
+- account_id: '888588296919'
+  name: Project1-Sandbox
+  regions: &id001
+  - eu-north-1
+  role: arn:aws:iam::888588296919:role/c7n-deploy
+  tags:
+  - Environment:Sand
+  - cat:P-8028
+# - account_id: 222222222222
+#   name: Project1-Dev
+#   regions: *id001
+#   role: arn:aws:iam::222222222222:role/c7n-admin
+#   tags:
+#   - Environment:Dev
+#   - cat:P-7580
+# - account_id: '333333333333'
+#   name: Project1-Test
+#   regions: *id001
+#   role: arn:aws:iam::333333333333:role/c7n-admin
+#   tags:
+#   - Environment:Test
+#   - cat:P-7336
+# - account_id: '444444444444'
+#   name: Project1-Prod
+#   regions: *id001
+#   role: arn:aws:iam::444444444444:role/c7n-admin
+#   tags:
+#   - Environment:Prod
+#   - cat:P-7336
