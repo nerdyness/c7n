@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - custodian validate ./custodian/policies/*
+      - c7n-org run --config custodian/c7n-org/config.yml --output-dir custodian/output/ --use custodian/policies/core-s3-encrypt-buckets.yml
+      - c7n-org run --config custodian/c7n-org/config.yml --output-dir custodian/output/ --use custodian/policies/core-security-group-ingress.yml
+  post_build:
+    commands:
+      - echo Build completed on $(date)
+artifacts:
+  base-directory: $CODEBUILD_SRC_DIR
+  files:
+    - custodian/output/**/*

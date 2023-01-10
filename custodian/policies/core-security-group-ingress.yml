@@ -1,0 +1,29 @@
+policies:
+  - name: core-security-group-ingress
+    resource: security-group
+    description: |
+      This policy monitors all Security Groups and removes any rule which allows 0.0.0.0/0 ingress (inbound).
+    mode:
+      type: cloudtrail
+      role: arn:aws:iam::{account_id}:role/c7n-exec
+      events:
+        - source: ec2.amazonaws.com
+          event: AuthorizeSecurityGroupIngress
+          ids: "requestParameters.groupId"
+    filters:
+      - or:
+        - type: ingress
+          OnlyPorts: [80,443]
+          Cidr:
+            value: 0.0.0.0/0
+            op: eq
+            value_type: cidr
+        - type: ingress
+          OnlyPorts: [80,443]
+          CidrV6:
+            value: ::/0
+            op: eq
+            value_type: cidr
+    actions:
+      - type: remove-permissions
+        ingress: matched

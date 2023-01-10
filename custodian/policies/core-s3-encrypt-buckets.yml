@@ -1,0 +1,17 @@
+policies:
+  - name: core-s3-encrypt-buckets
+    resource: s3
+    mode:
+      type: cloudtrail
+      role: arn:aws:iam::{account_id}:role/c7n-exec
+      events:
+      - source: s3.amazonaws.com
+        event: CreateBucket
+        ids: requestParameters.bucketName
+    filters:
+      - type: bucket-encryption
+        state: False
+    actions:
+      - type: set-bucket-encryption
+        crypto: AES256
+        enabled: True
