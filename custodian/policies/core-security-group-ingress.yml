@@ -1,5 +1,5 @@
 policies:
-  - name: core-sg-high-risk-ingress
+  - name: core-security-group-ingress
     resource: security-group
     description: |
       This policy monitors all Security Groups and removes any rule which allows 0.0.0.0/0 ingress (inbound).

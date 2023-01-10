@@ -17,36 +17,40 @@ help: ## Display this help text
 
 .PHONY: bootstrap
 bootstrap: ## Install the CDK Toolkit (needed for the CDK)
-	cd $(CDK_ROOT); cdk bootstrap
+	cd $(CDK_ROOT); pipenv run cdk bootstrap
 
 .PHONY: dependencies
 dependencies: ## Install the Python dependencies
 	# npm install -g aws-cdk
 	cd $(CDK_ROOT); pipenv install
 
+.PHONY: pip-update
+pip-update: ## Update your Python dependencies
+	cd $(CDK_ROOT); pipenv update
+
 .PHONY: synth
 synth: ## Print out the CloudFormation code for this app
-	cd $(CDK_ROOT); cdk synth
+	cd $(CDK_ROOT); pipenv run cdk synth
 
 .PHONY: deploy
 deploy: ## Deploy the CDK Stack
-	cd $(CDK_ROOT); cdk deploy
+	cd $(CDK_ROOT); pipenv run cdk deploy
 
 .PHONY: diff
 diff: ## Show the differences between what is local and what is deployed
-	cd $(CDK_ROOT); cdk diff || true  # Exits non-zero if there is a diff.
+	cd $(CDK_ROOT); pipenv run cdk diff || true  # Exits non-zero if there is a diff.
 
 .PHONY: docs
 docs: ## Attempt to open the CDK documentation in a browser
-	cd $(CDK_ROOT); cdk docs
+	cd $(CDK_ROOT); pipenv run cdk docs
 
 .PHONY: destroy
 destroy: ## Destroy the CDK Stack
-	cd $(CDK_ROOT); cdk destroy
+	cd $(CDK_ROOT); pipenv run cdk destroy
 
 .PHONY: show
 show: ## Show the CDK App & Stacks
-	cd $(CDK_ROOT); cdk ls
+	cd $(CDK_ROOT); pipenv run cdk ls
 
 .PHONY: cloud-run
 cloud-run: ## Do a custodian run in AWS CodeBuild
