@@ -21,11 +21,11 @@ bootstrap: ## Install the CDK Toolkit (needed for the CDK)
 
 .PHONY: dependencies
 dependencies: ## Install the Python dependencies
-	# npm install -g aws-cdk
+	npm install -g aws-cdk
 	cd $(CDK_ROOT); pipenv install
 
 .PHONY: pip-update
-pip-update: ## Update your Python dependencies
+pip-update: ## Update your Python libraries in Pipfile
 	cd $(CDK_ROOT); pipenv update
 
 .PHONY: synth
